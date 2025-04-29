@@ -36,7 +36,7 @@ pipeline {
                         -Dsonar.projectKey=Twitter_Sentiment_Analysis \
                         -Dsonar.sources=. \
                         -Dsonar.host.url=http://localhost:9000 \
-                        -Dsonar.login=your_sonar_token_here
+                        -Dsonar.login=sqp_ae9c12a7465549096be09733aec9875d3d48f54d
                     '''
                 }
             }
