@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    tools {
+        nodejs "nodejs" // this must be inside the pipeline block, not after 'environment'
+    }
+
     environment {
         SONAR_SCANNER_HOME = tool 'sonar-scanner'
     }
@@ -27,11 +31,13 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv('SonarQube') {
-                    sh "${SONAR_SCANNER_HOME}/bin/sonar-scanner \
+                    sh '''
+                        ${SONAR_SCANNER_HOME}/bin/sonar-scanner \
                         -Dsonar.projectKey=Twitter_Sentiment_Analysis \
                         -Dsonar.sources=. \
                         -Dsonar.host.url=http://localhost:9000 \
-                        -Dsonar.login=your_sonar_token_here"
+                        -Dsonar.login=your_sonar_token_here
+                    '''
                 }
             }
         }
