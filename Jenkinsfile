@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     tools {
-        nodejs "nodejs" // this must be inside the pipeline block, not after 'environment'
+        nodejs "nodejs" // This must be inside the pipeline block, not after 'environment'
     }
 
     environment {
