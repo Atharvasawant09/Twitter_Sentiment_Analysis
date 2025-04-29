@@ -35,7 +35,7 @@ pipeline {
                         ${SONAR_SCANNER_HOME}/bin/sonar-scanner \
                         -Dsonar.projectKey=Twitter_Sentiment_Analysis \
                         -Dsonar.sources=. \
-                        -Dsonar.host.url=http://host.docker.internal:9000 \
+                        -Dsonar.host.url=http:// 172.21.96.1 :9000 \
                         -Dsonar.login=sqp_2bee53804ee79e3f53422154873fc3fb96c6aa1f    
                     '''
                 }
