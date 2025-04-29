@@ -1,11 +1,10 @@
 pipeline {
     agent any
-    tools {
-        nodejs 'nodejs' // matches your Jenkins NodeJS tool name
-    }
+
     environment {
         SONAR_SCANNER_HOME = tool 'sonar-scanner'
     }
+
     stages {
         stage('Checkout') {
             steps {
@@ -21,7 +20,7 @@ pipeline {
 
         stage('Run Tests') {
             steps {
-                sh 'npm test || true' // allow test failures to not break build
+                sh 'npm test || true'
             }
         }
 
@@ -30,9 +29,9 @@ pipeline {
                 withSonarQubeEnv('SonarQube') {
                     sh "${SONAR_SCANNER_HOME}/bin/sonar-scanner \
                         -Dsonar.projectKey=Twitter_Sentiment_Analysis \
-                        -Dsonar.sources=src \
+                        -Dsonar.sources=. \
                         -Dsonar.host.url=http://localhost:9000 \
-                        -Dsonar.login=your_token_here"
+                        -Dsonar.login=your_sonar_token_here"
                 }
             }
         }
