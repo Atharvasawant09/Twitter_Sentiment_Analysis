@@ -28,7 +28,19 @@ pipeline {
             }
         }
 
-       
+        stage('SonarQube Analysis') {
+            steps {
+                withSonarQubeEnv('SonarQube') {
+                    sh '''
+                        ${SONAR_SCANNER_HOME}/bin/sonar-scanner \
+                        -Dsonar.projectKey=Twitter_Sentiment_Analysis \
+                        -Dsonar.sources=. \
+                        -Dsonar.host.url=http://host.docker.internal:9000 \
+                        -Dsonar.login=sqp_2bee53804ee79e3f53422154873fc3fb96c6aa1f    
+                    '''
+                }
+            }
+        }
 
         stage('Build') {
             steps {
